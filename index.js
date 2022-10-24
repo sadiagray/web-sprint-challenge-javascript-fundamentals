@@ -17,7 +17,7 @@ function myFunction() {
 
 //🚀🚀🚀 ⬇️ 📝 Explanation ⬇️ 📝 🚀🚀🚀: 
 
-
+//Each block has a memory of the block before it. Basically code can see into the past but not the future. It can pull information that came from the earlier scopes but not the scopes that come after it. 
 
 
 
