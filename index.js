@@ -65,9 +65,13 @@ const zooAnimals = [
   */
 
   function animalNames(array){
-
-  }
-  
+    let displayNames = []
+    zooAnimals.forEach((element)=>{
+      displayNames.push(`name: ${element.animal_name}, scientific: ${element.scientific_name}`)
+    })
+    return displayNames
+  };
+  console.log(animalNames);
 
   /* 🦁🦁🦁 Request 2: .map() 🦁🦁🦁
   The zoo needs a list of all their animal's names converted to lower case. 
@@ -78,12 +82,14 @@ const zooAnimals = [
   🌟 EXAMPLE of returned array: ['jackal, asiatic', .....]
   💡 NOTE: Do some research for other methods that can help help you
   */
+    function lowerCaseNames(array){
+      const newArr = zooAnimals.map((element) =>{
+        return element.animal_name.toLowerCase;
+      })
+      return newArr;
+  };
+  console.log(lowerCaseNames);
 
-  function lowerCaseNames(array){
-    
-  }
-  
-  
   /* 🦁🦁🦁 Request 3: .filter() 🦁🦁🦁
   The zoo is concerned about animals with a lower population count. 
   Use lowPopulationAnimals to do the following: 
@@ -92,10 +98,10 @@ const zooAnimals = [
   3. Return this new array
   */
 
-  function lowPopulationAnimals(){
-    /*Your Code Here*/
-  }
-  
+  function lowPopulationAnimals(array){
+    return array.filter(element => element.population <5)
+  };
+  console.log(lowPopulationAnimals(zooAnimals));
 
   /* 🦁🦁🦁 Request 4: .reduce() 🦁🦁🦁
   The zoo needs to know their total animal population across the United States. 
@@ -106,10 +112,13 @@ const zooAnimals = [
   💡 NOTE: Remember the reduce method takes two arguments: a callback (which itself takes two args - the accumulator and the item), and an initial value for the count. Check MDN/W3Schools for syntax!
   */
 
-  function USApop(/*Your Code Here*/){
-    /*Your Code Here*/
-  }
-  
+  function USApop(array){
+    const reducedArr = array.reduce((accumulator, currentValue)=>{
+      return accumulator + currentValue.population;
+    },0);
+    return reducedArr;
+  };
+  console.log(USApop(zooAnimals));
   
   // 🦁🦁🦁 Callbacks 🦁🦁🦁  
   /* 🦁🦁🦁 Step 1: Create a higher-order function 🦁🦁🦁
@@ -121,8 +130,8 @@ const zooAnimals = [
   */
 
   function consume(a, b, cb){
-    /*Your Code Here */
-  }
+    return cb(a,b);
+  };
  
   
   // 🦁🦁🦁 Step 2: Create several functions to callback with consume(); 🦁🦁🦁
@@ -229,15 +238,29 @@ const cuboid = new CuboidMaker({
 //Using CuboidMakerTwo, take your prototypes from above and refactor into class syntax. Then, create an object called cuboidTwo that uses the new keyword to use our CuboidMakerTwo class.
  
 class CuboidMakerTwo{
-
+    constructor(obj){
+      this.length = obj.length;
+  this.width = obj.width;
+  this.height = obj.height;
+    }
+    volume(){
+      return this.length * this.width * this.height;
+    }
+    surfaceArea(){
+      return 2 * (this.length * this.width + this.length * this.height + this.width * this.height)
+    }
 }
 
-
+const cuboidTwo = new CuboidMakerTwo({
+  length: 5,
+  width: 6,
+  height:6
+});
 
 
 //🦄🦄🦄 Test your volume and surfaceArea methods by uncommenting the logs below: 🦄🦄🦄
-// console.log(cuboidTwo.volume()); // 100
-// console.log(cuboidTwo.surfaceArea()); // 130
+//console.log(cuboidTwo.volume()); // 100
+ //console.log(cuboidTwo.surfaceArea()); // 130
 
 
 
@@ -265,4 +288,4 @@ class CuboidMakerTwo{
     greeting,
     CuboidMaker,
     CuboidMakerTwo
-  }
+}
